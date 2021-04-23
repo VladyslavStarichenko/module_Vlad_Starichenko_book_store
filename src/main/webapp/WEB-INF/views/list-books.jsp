@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Todo list</title>
+    <title>Book Store</title>
 
 
 
