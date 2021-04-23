@@ -19,12 +19,8 @@ public class DeleteBookServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		String address = request.getParameter("addressList");
 		String title = request.getParameter("title");
 		String author = request.getParameter("author");
-//		Address address1 = new Address();
-//		address1.setAddressName(address);
-//		Integer id = BookDao.getBooKId(address,title,author);
 		bookService.deleteBook(title,author);
 		response.sendRedirect("/list-books.do");
 	}
