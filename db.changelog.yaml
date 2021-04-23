@@ -174,7 +174,7 @@ databaseChangeLog:
                   name: language
                   value: English
               - column:
-                  name: translated
+                  name: istranslated
                   value: true
         - insert:
             tableName: book
@@ -213,7 +213,7 @@ databaseChangeLog:
                   name: language
                   value: English
               - column:
-                  name: translated
+                  name: istranslated
                   value: true
         - insert:
             tableName: book
@@ -252,7 +252,7 @@ databaseChangeLog:
                   name: language
                   value: English
               - column:
-                  name: translated
+                  name: istranslated
                   value: true
   - changeSet:
       id: insert-book_address
