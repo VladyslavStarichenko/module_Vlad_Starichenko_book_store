@@ -1,0 +1,314 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-tables
+      author: goldsilver12
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(255)
+                  constraints:
+                    unique: true
+                    nullable: false
+              - column:
+                  name: password
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: book
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: author
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: price
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: publishDate
+                  type: date
+              - column:
+                  name: publisher
+                  type: varchar(255)
+              - column:
+                  name: reseller
+                  type: varchar(255)
+              - column:
+                  name: pageCount
+                  type: int
+              - column:
+                  name: verticalSize
+                  type: int
+              - column:
+                  name: horizontalSize
+                  type: int
+              - column:
+                  name: weight
+                  type: int
+              - column:
+                  name: language
+                  type: varchar(255)
+              - column:
+                  name: istranslated
+                  type: boolean
+
+        - createTable:
+            tableName: address
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: addressname
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+        - createTable:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    foreignKeyName: fk_book
+                    references: book(id)
+                    nullable: false
+              - column:
+                  name: address_id
+                  type: int
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+                    foreignKeyName: fk_address
+                    references: address(id)
+
+  - changeSet:
+      id: insert-address
+      author: goldsilver12
+      changes:
+        - insert:
+            tableName: address
+            columns:
+              - column:
+                  name: addressname
+                  value: 567 Richmond Street, London
+        - insert:
+            tableName: address
+            columns:
+              - column:
+                  name: addressname
+                  value: 203-206 Piccadilly, St. James's, London
+        - insert:
+            tableName: address
+            columns:
+              - column:
+                  name: addressname
+                  value: 47 N Cross Rd, London SE22 9ET
+  - changeSet:
+      id: insert-books
+      author: goldsilver12
+      changes:
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: To Kill a Mockingbird
+              - column:
+                  name: author
+                  value: Harper Lee
+              - column:
+                  name: price
+                  value: 150
+              - column:
+                  name: publishDate
+                  value: 2001-11-21
+              - column:
+                  name: publisher
+                  value: Test1
+              - column:
+                  name: reseller
+                  value: Test1
+              - column:
+                  name: pageCount
+                  value: 121
+              - column:
+                  name: verticalSize
+                  value: 21
+              - column:
+                  name: horizontalSize
+                  value: 15
+              - column:
+                  name: weight
+                  value: 1
+              - column:
+                  name: language
+                  value: English
+              - column:
+                  name: translated
+                  value: true
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: 1984
+              - column:
+                  name: author
+                  value: George Orwell
+              - column:
+                  name: price
+                  value: 199
+              - column:
+                  name: publishDate
+                  value: 2000-05-21
+              - column:
+                  name: publisher
+                  value: Test2
+              - column:
+                  name: reseller
+                  value: Test2
+              - column:
+                  name: pageCount
+                  value: 180
+              - column:
+                  name: verticalSize
+                  value: 21
+              - column:
+                  name: horizontalSize
+                  value: 11
+              - column:
+                  name: weight
+                  value: 1
+              - column:
+                  name: language
+                  value: English
+              - column:
+                  name: translated
+                  value: true
+        - insert:
+            tableName: book
+            columns:
+              - column:
+                  name: title
+                  value: The Book Thief
+              - column:
+                  name: author
+                  value: Markus Zusak
+              - column:
+                  name: price
+                  value: 10000
+              - column:
+                  name: publishDate
+                  value: 2008-09-15
+              - column:
+                  name: publisher
+                  value: Test3
+              - column:
+                  name: reseller
+                  value: Test3
+              - column:
+                  name: pageCount
+                  value: 250
+              - column:
+                  name: verticalSize
+                  value: 21
+              - column:
+                  name: horizontalSize
+                  value: 11
+              - column:
+                  name: weight
+                  value: 1
+              - column:
+                  name: language
+                  value: English
+              - column:
+                  name: translated
+                  value: true
+  - changeSet:
+      id: insert-book_address
+      author: goldsilver12
+      changes:
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: address_id
+                  value: 1
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 1
+              - column:
+                  name: address_id
+                  value: 2
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: address_id
+                  value: 1
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 2
+              - column:
+                  name: address_id
+                  value: 3
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: address_id
+                  value: 2
+        - insert:
+            tableName: book_address
+            columns:
+              - column:
+                  name: book_id
+                  value: 3
+              - column:
+                  name: address_id
+                  value: 3

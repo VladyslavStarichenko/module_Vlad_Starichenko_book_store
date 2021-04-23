@@ -147,6 +147,11 @@
         <th style="text-align: center">Title</th>
         <th style="text-align: center">Author</th>
         <th style="text-align: center">Addresses</th>
+        <th style="text-align:  center;  ">Price</th>
+        <th style="text-align:  center;  ">Reseller</th>
+        <th style="text-align:  center;  ">Publisher</th>
+        <th style="text-align:  center;  ">Publish Date</th>
+        <th style="text-align:  center;  ">Page Count</th>
         <th style="text-align:  center;  ">Deleting</th>
         <th style="text-align: center">Updating</th>
         </thead>
@@ -159,15 +164,18 @@
                 <c:forEach items="${book.addressList}" var="address">
                 <td style="margin-top: 5px">
                     <p>${address.addressName}</p>
-
                 </td>
                 </c:forEach>
+                <td>${book.price}&#163</td>
+                <td>${book.reseller}</td>
+                <td>${book.publisher} </td>
+                <td>${book.publishDate}</td>
+                <td>${book.pageCountli}</td>
                 <td style="margin-top: 5px">
                     <a style="text-decoration: none #c37180; margin-top: 5px"  class="btn btn-danger"  href="/delete-book.do?title=${book.title}&author=${book.author}">Delete<svg style="margin-left: 10px; margin-bottom: -2px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
                         <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
                     </svg></a>
-
                 </td>
                 <td>
                     <a class="btn btn-warning" href="/update-book.do?oldAuthor=${book.author}&oldTitle=${book.title}">Update<svg style="margin-bottom: -2px; margin-left: 10px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
