@@ -36,13 +36,13 @@ public class Book {
     @Column(name = "reseller")
     private String reseller;
 
-    @Column(name = "pageCount")
+    @Column(name = "page_count")
     private int pageCount;
 
-    @Column(name = "verticalSize")
+    @Column(name = "vertical_size")
     private int verticalSize;
 
-    @Column(name = "horizontalSize")
+    @Column(name = "horizontal_size")
     private int horizontalSize;
 
     @Column(name = "weight")
@@ -51,7 +51,7 @@ public class Book {
     @Column(name = "language")
     private String language;
 
-    @Column(name = "isTranslated")
+    @Column(name = "is_translated")
     private boolean isTranslated;
 
 

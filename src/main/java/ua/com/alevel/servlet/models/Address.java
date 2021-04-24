@@ -16,7 +16,7 @@ public class Address implements Serializable {
     private Integer id;
 
 
-    @Column(name = "addressName")
+    @Column(name = "address_name")
     private String addressName;
 
     @ManyToMany(mappedBy = "addressList")
