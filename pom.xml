@@ -62,7 +62,7 @@
       <plugin>
         <groupId>org.liquibase</groupId>
         <artifactId>liquibase-maven-plugin</artifactId>
-        <version>3.8.0</version>
+        <version>3.6.3</version>
         <configuration>
           <propertyFile>liquibase.properties</propertyFile>
         </configuration>
@@ -90,11 +90,30 @@
                   <version>9.0.41.0</version>
                   <destFileName>webapp-runner.jar</destFileName>
                 </artifactItem>
+                <artifactItem>
+                  <groupId>org.liquibase</groupId>
+                  <artifactId>liquibase-core</artifactId>
+                  <version>3.4.1</version>
+                  <destFileName>liquibase.jar</destFileName>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.yaml</groupId>
+                  <artifactId>snakeyaml</artifactId>
+                  <version>1.13</version>
+                  <outputDirectory>${project.build.directory}/dependency/lib</outputDirectory>
+                </artifactItem>
+                <artifactItem>
+                  <groupId>org.postgresql</groupId>
+                  <artifactId>postgresql</artifactId>
+                  <version>9.4-1204-jdbc41</version>
+                  <destFileName>postgres.jar</destFileName>
+                </artifactItem>
               </artifactItems>
             </configuration>
           </execution>
         </executions>
       </plugin>
+
     </plugins>
     <pluginManagement>
       <plugins>

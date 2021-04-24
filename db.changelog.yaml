@@ -2,28 +2,22 @@ databaseChangeLog:
   - changeSet:
       id: create-tables
       author: goldsilver12
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            - tableExists:
+                schemaName: public
+                tableName: book
+            - tableExists:
+                schemaName: public
+                tableName: address
+            - tableExists:
+                schemaName: public
+                tableName: users
+            - tableExists:
+                schemaName: public
+                tableName: book_address
       changes:
-        - createTable:
-            tableName: users
-            columns:
-              - column:
-                  name: id
-                  type: int
-                  autoIncrement: true
-                  constraints:
-                    primaryKey: true
-                    nullable: false
-              - column:
-                  name: name
-                  type: varchar(255)
-                  constraints:
-                    unique: true
-                    nullable: false
-              - column:
-                  name: password
-                  type: varchar(255)
-                  constraints:
-                    nullable: false
         - createTable:
             tableName: book
             columns:
@@ -98,7 +92,6 @@ databaseChangeLog:
                   name: book_id
                   type: int
                   constraints:
-                    primaryKey: true
                     foreignKeyName: fk_book
                     references: book(id)
                     nullable: false
@@ -106,7 +99,6 @@ databaseChangeLog:
                   name: address_id
                   type: int
                   constraints:
-                    primaryKey: true
                     nullable: false
                     foreignKeyName: fk_address
                     references: address(id)
