@@ -130,7 +130,7 @@
         </fieldset>
         <fieldset class="form-group">
             <label>Horizontal Size</label>
-            <input name="horizontalsize" type="text" class="form-control"/> <BR/>
+            <input name="horizontalSize" type="text" class="form-control"/> <BR/>
         </fieldset>
         <fieldset class="form-group">
             <label>Weight</label>

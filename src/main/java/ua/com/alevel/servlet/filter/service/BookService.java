@@ -13,7 +13,7 @@ public class BookService {
         return BookDao.getAllBooks();
     }
 
-    public void addBook(Book book,Address address) {
+    public void addBook(Book book) {
         BookDao.createBook(book.getTitle(),book.getAuthor(),book.getPublisher(),book);
     }
 

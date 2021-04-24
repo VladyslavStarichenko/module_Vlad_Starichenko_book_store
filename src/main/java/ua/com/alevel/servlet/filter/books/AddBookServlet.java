@@ -36,7 +36,7 @@ public class AddBookServlet extends HttpServlet {
 		String reseller = request.getParameter("reseller");
 		Integer pages = Integer.valueOf(request.getParameter("pagecount"));
 		Integer verticalSize = Integer.valueOf(request.getParameter("verticalsize"));
-		Integer horizontalSize = Integer.valueOf(request.getParameter("horizontalsize"));
+		Integer horizontalSize = Integer.valueOf(request.getParameter("horizontalSize"));
 		Integer weight = Integer.valueOf(request.getParameter("weight"));
 		String language = request.getParameter("language");
 		Boolean isTranslated = Boolean.valueOf(request.getParameter("istranslated"));
@@ -45,15 +45,15 @@ public class AddBookServlet extends HttpServlet {
 		String addressOfBook = request.getParameter("address");
 		Address address = new Address();
         address.setAddressName(addressOfBook);
-		Book book = new Book(bookName,author,price, dateToSet,publisher,reseller,pages,verticalSize,
-				horizontalSize,weight,language,isTranslated);
+		Book book = new Book(bookName,author,price,dateToSet,publisher,
+				reseller,pages,verticalSize,horizontalSize,weight,language,isTranslated);
         book.addAddress(address);
         book.setAddressList(book.getAddressList());
 
 
 
 		if(!BookDao.checkBookExisting(bookName,author,publisher)){
-			bookService.addBook(book,address);
+			bookService.addBook(book);
 			response.sendRedirect("/list-books.do");
 		}else {
 			request.setAttribute("errorMessage", "This task is already exists");

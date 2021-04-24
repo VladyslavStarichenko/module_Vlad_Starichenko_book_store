@@ -100,6 +100,7 @@ public class BookDao {
     public static void bookCreation(Book book) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
+            System.out.println(book);
             session.save(book);
             session.getTransaction().commit();
         } catch (Exception e) {
