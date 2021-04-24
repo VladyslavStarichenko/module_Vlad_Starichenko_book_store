@@ -40,7 +40,7 @@
             width: 150px;
         }
         .container{
-            width: 70%;
+            width: auto;
             height: auto;
             margin-left: auto;
             margin-right: auto;
@@ -161,16 +161,17 @@
             <tr style="text-align: center">
                 <td >${book.title}</td>
                 <td>${book.author}</td>
-                <c:forEach items="${book.addressList}" var="address">
                 <td style="margin-top: 5px">
+                    <c:forEach items="${book.addressList}" var="address">
                     <p>${address.addressName}</p>
+                    </c:forEach>
                 </td>
-                </c:forEach>
+
                 <td>${book.price}&#163</td>
                 <td>${book.reseller}</td>
                 <td>${book.publisher} </td>
                 <td>${book.publishDate}</td>
-                <td>${book.pageCountli}</td>
+                <td>${book.pageCount}</td>
                 <td style="margin-top: 5px">
                     <a style="text-decoration: none #c37180; margin-top: 5px"  class="btn btn-danger"  href="/delete-book.do?title=${book.title}&author=${book.author}">Delete<svg style="margin-left: 10px; margin-bottom: -2px" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>

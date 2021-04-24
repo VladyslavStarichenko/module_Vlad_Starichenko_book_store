@@ -74,9 +74,6 @@ public class UpdateAddressServlet extends HttpServlet {
 
         BookDao bookDao = new BookDao();
         bookDao.update(book,oldBookId);
-        BookService bookService = new BookService();
-        bookService.deleteBook(oldTitle,oldAuthor);
-
 
 
         response.sendRedirect("/list-books.do");

@@ -1,1 +1,2 @@
 web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --port $PORT target/*.war
+release: java -jar target/dependency/liquibase.jar --changeLogFile=db.changelog.yaml --url=jdbc:postgresql://ec2-3-212-75-25.compute-1.amazonaws.com/da107jtdnlf9kl --classpath=target/dependency/postgres.jar update
