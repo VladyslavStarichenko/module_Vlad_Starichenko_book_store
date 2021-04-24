@@ -82,7 +82,7 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: addressname
+                  name: address_name
                   type: varchar(255)
                   constraints:
                     nullable: false
@@ -112,19 +112,19 @@ databaseChangeLog:
             tableName: address
             columns:
               - column:
-                  name: addressname
+                  name: address_name
                   value: 567 Richmond Street, London
         - insert:
             tableName: address
             columns:
               - column:
-                  name: addressname
+                  name: address_name
                   value: 203-206 Piccadilly, St. James's, London
         - insert:
             tableName: address
             columns:
               - column:
-                  name: addressname
+                  name: address_name
                   value: 47 N Cross Rd, London SE22 9ET
   - changeSet:
       id: insert-books

@@ -27,7 +27,7 @@ public class Book {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "publishDate")
+    @Column(name = "publish_date")
     private Date publishDate;
 
     @Column(name = "publisher")

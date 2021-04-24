@@ -114,22 +114,22 @@ public class BookDao {
 
             session.beginTransaction();
 
-            Query query = session.createNativeQuery("UPDATE book SET title = ?, author = ?, price= ?" +
-                    " , publishdate=?, publisher = ?, reseller=?, pagecount=?," +
-                    "verticalsize =?, horizontalsize=?,weight=?,language=?, istranslated=? WHERE id= ?",Book.class);
-            query.setParameter(1, book.getTitle());
-            query.setParameter(2, book.getAuthor());
-            query.setParameter(3, book.getPrice());
-            query.setParameter(4, book.getPublishDate());
-            query.setParameter(5, book.getPublisher());
-            query.setParameter(6, book.getReseller());
-            query.setParameter(7, book.getPageCount());
-            query.setParameter(8, book.getVerticalSize());
-            query.setParameter(9, book.getHorizontalSize());
-            query.setParameter(10, book.getWeight());
-            query.setParameter(11, book.getLanguage());
-            query.setParameter(12, book.isTranslated());
-            query.setParameter(13, id);
+            Query query = session.createQuery("UPDATE Book SET title =: title, author =:author, price=:price, publishDate=:publishDate, publisher =:publisher," +
+                    " reseller=:reseller, pageCount=:pageCount," +
+                    "verticalSize =:verticalsize, horizontalSize=:horizontalsize,weight=:weight,language=:language, isTranslated=:istranslated WHERE id=:id",Book.class);
+            query.setParameter("title", book.getTitle());
+            query.setParameter("author", book.getAuthor());
+            query.setParameter("price", book.getPrice());
+            query.setParameter("publishDate", book.getPublishDate());
+            query.setParameter("publisher", book.getPublisher());
+            query.setParameter("reseller", book.getReseller());
+            query.setParameter("pageCount", book.getPageCount());
+            query.setParameter("verticalsize", book.getVerticalSize());
+            query.setParameter("horizontalsize", book.getHorizontalSize());
+            query.setParameter("weight", book.getWeight());
+            query.setParameter("language", book.getLanguage());
+            query.setParameter("istranslated", book.isTranslated());
+            query.setParameter("id", id);
             query.executeUpdate();
             session.getTransaction().commit();
         }
