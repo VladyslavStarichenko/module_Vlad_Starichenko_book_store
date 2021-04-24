@@ -22,7 +22,7 @@
             top: 50%;
             bottom: 50%;
             width: 500px;
-            height: 400px;
+            height: auto;
             border: 1px solid black;
             margin-bottom: 190px;
             border-radius: 20px;

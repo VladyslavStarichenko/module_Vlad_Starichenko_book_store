@@ -55,8 +55,7 @@ public class Book {
     private boolean isTranslated;
 
 
-    @ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SELECT)
+    @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
             name = "book_address",
             joinColumns = @JoinColumn(name = "book_id"),
