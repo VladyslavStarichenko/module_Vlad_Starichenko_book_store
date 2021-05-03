@@ -19,11 +19,17 @@ public class Address implements Serializable {
     @Column(name = "address_name")
     private String addressName;
 
-    @ManyToMany(mappedBy = "addressList")
+    @ManyToMany(cascade=CascadeType.ALL)
+    @JoinTable(
+            name = "book_address",
+            joinColumns = {@JoinColumn(name = "address_id")},
+            inverseJoinColumns = {@JoinColumn(name = "book_id")}
+    )
     private List<Book> books = new ArrayList<>();
 
-
-
+    public Address(String addressName) {
+        this.addressName = addressName;
+    }
 
     public Integer getId() {
         return id;

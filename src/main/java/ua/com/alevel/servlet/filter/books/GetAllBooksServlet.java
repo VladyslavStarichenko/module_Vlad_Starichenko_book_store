@@ -20,7 +20,8 @@ public class GetAllBooksServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		String username = (String) request.getSession().getAttribute("name");
 		request.setAttribute("books", bookService.retrieveBooks());
-		request.getRequestDispatcher("/WEB-INF/views/list-books.jsp").forward(
+
+		request.getRequestDispatcher("/WEB-INF/views/book/list-books.jsp").forward(
 				request, response);
 	}
 }

@@ -3,11 +3,9 @@ package ua.com.alevel.servlet.dao;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import ua.com.alevel.servlet.models.Address;
 import ua.com.alevel.servlet.models.Book;
 import ua.com.alevel.servlet.utils.HibernateSessionFactoryUtil;
 
-import java.sql.Date;
 import java.util.List;
 
 public class BookDao {
@@ -15,16 +13,14 @@ public class BookDao {
     private static final SessionFactory sessionFactory = HibernateSessionFactoryUtil.getSessionFactory();
 
 
-
-
-    public static void createBook(String bookName, String author, String publisher, Book book) {
+    public  void createBook(String bookName, String author, String publisher, Book book) {
         if (!checkBookExisting(bookName, author, publisher)) {
             bookCreation(book);
         }
     }
 
 
-    public static List<Book> getAllBooks() {
+    public  List<Book> getAllBooks() {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             Query<Book> query = session.createNativeQuery(" SELECT * FROM  book ", Book.class);
@@ -34,42 +30,20 @@ public class BookDao {
         }
     }
 
-    public static Book getBook(Integer id) {
+
+    public  boolean checkBookExisting(String title,String author, String publisher) {
         try (Session session = sessionFactory.openSession()) {
-            Query<Book> query = session.createNativeQuery(" SELECT * FROM book  WHERE id = ? ", Book.class);
-            query.setParameter(1, id);
-            Book book = query.getSingleResult();
-            return book;
+            Query<Long> query = session.createQuery("SELECT count(*) FROM Book where title = :title AND author=:author AND publisher =: publisher ", Long.class);
+            query.setParameter("title", title);
+            query.setParameter("author", author);
+            query.setParameter("publisher", publisher);
+            return query.getSingleResult() > 0;
         }
     }
 
-    public static boolean checkBookExisting(String bookName, String author, String publisher) {
-        List<Book> books = getAllBooks();
-        for (Book book : books) {
-            if (book.getTitle().equals(bookName) &&
-                    book.getAuthor().equals(author) &&
-                    book.getPublisher().equals(publisher)
-            ) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private static boolean chekAddressInList(Address addressToCheck) {
-        List<Book> books = getAllBooks();
-        for (Book book : books) {
-            for(Address address : book.getAddressList()){
-                if(address.getAddressName().equals(addressToCheck.getAddressName())){
-                    return true;
-                }
-            }
-        }
-         return false;
-    }
 
 
-    public static void deleteBook(String title, String author){
+    public  void deleteBook(String title, String author){
         try (Session session = sessionFactory.openSession()){
             session.beginTransaction();
             Query query = session.createQuery("DELETE FROM Book WHERE title =: title AND  author =: author");
@@ -80,24 +54,18 @@ public class BookDao {
         }
     }
 
-    //GET Book's id with specific address
-    public static Integer getBooKId(String title, String author) {
+    public  Book getBooK(String title, String author) {
         try (Session session = sessionFactory.openSession()) {
-            session.beginTransaction();
-            Query<Integer> query = session.createNativeQuery("SELECT book_id FROM book_address ba" +
-                    " WHERE book_id IN (SELECT id FROM Book b WHERE b.title = ? AND b.author =?)");
-
-            query.setParameter(1,title);
-            query.setParameter(2,author);
-            Integer singleResult = query.getResultList().get(0);
-            session.getTransaction().commit();
-            return singleResult;
+            Query<Book> query = session.createNativeQuery(" SELECT * FROM book  WHERE title = ? AND author = ? ", Book.class);
+            query.setParameter(1, title);
+            query.setParameter(2, author);
+            Book result = query.getSingleResult();
+            return result;
         }
     }
 
 
-
-    public static void bookCreation(Book book) {
+    public  void bookCreation(Book book) {
         try (Session session = sessionFactory.openSession()) {
             session.beginTransaction();
             System.out.println(book);
@@ -108,32 +76,15 @@ public class BookDao {
         }
     }
 
-
-    public  void update(Book book, Integer id) {
+    public void updateBook(Book book) {
         try (Session session = sessionFactory.openSession()) {
-
             session.beginTransaction();
-
-            Query query = session.createQuery("UPDATE Book SET title =: title, author =:author, price=:price, publishDate=:publishDate, publisher =:publisher," +
-                    " reseller=:reseller, pageCount=:pageCount," +
-                    "verticalSize =:verticalsize, horizontalSize=:horizontalsize,weight=:weight,language=:language, isTranslated=:istranslated WHERE id=:id",Book.class);
-            query.setParameter("title", book.getTitle());
-            query.setParameter("author", book.getAuthor());
-            query.setParameter("price", book.getPrice());
-            query.setParameter("publishDate", book.getPublishDate());
-            query.setParameter("publisher", book.getPublisher());
-            query.setParameter("reseller", book.getReseller());
-            query.setParameter("pageCount", book.getPageCount());
-            query.setParameter("verticalsize", book.getVerticalSize());
-            query.setParameter("horizontalsize", book.getHorizontalSize());
-            query.setParameter("weight", book.getWeight());
-            query.setParameter("language", book.getLanguage());
-            query.setParameter("istranslated", book.isTranslated());
-            query.setParameter("id", id);
-            query.executeUpdate();
+            session.saveOrUpdate(book);
             session.getTransaction().commit();
         }
     }
+
+
 
 
 }
