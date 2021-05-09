@@ -147,6 +147,10 @@
             <input name="istranslated" type="text" class="form-control"/> <BR/>
         </fieldset>
         <fieldset class="form-group">
+            <label>Date</label>
+            <input name="date" type="text" class="form-control" placeholder="YYYY/MM/DD"/> <BR/>
+        </fieldset>
+        <fieldset class="form-group">
             <label>Address of Book</label>
             <input name="address" type="text" class="form-control"/> <BR/>
             <div class="btn-group" style="margin-left: 10px; margin-top: 10px;">

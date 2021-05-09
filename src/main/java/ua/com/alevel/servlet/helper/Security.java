@@ -4,6 +4,10 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+
+
+
+/*Fixed: Is was created own method to make hashing more secure*/
 public class Security {
     public  String hasher(String passwordToHash) {
 

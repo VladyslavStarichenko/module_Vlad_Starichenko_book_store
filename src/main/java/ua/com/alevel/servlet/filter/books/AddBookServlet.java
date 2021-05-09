@@ -33,11 +33,9 @@ public class AddBookServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/book/add-book.jsp").forward(
                 request, response);
     }
-
+/*Fixed: Address is adding properly now*/
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response) throws ServletException, IOException {
-
-
         String bookName = request.getParameter("title");
         String author = request.getParameter("author");
         Integer price = Integer.valueOf(request.getParameter("price"));
@@ -49,12 +47,11 @@ public class AddBookServlet extends HttpServlet {
         Integer weight = Integer.valueOf(request.getParameter("weight"));
         String language = request.getParameter("language");
         Boolean isTranslated = Boolean.valueOf(request.getParameter("istranslated"));
-        LocalDate date = LocalDate.now();
-        Date dateToSet = Date.valueOf(date);
+        Date date = Date.valueOf(request.getParameter("date"));
         String addresses = request.getParameter("address");
         List<Address> addressList = new ArrayList<>();
         getListOfAddresses(addresses, addressList);
-        Book book = new Book(bookName, author, price, dateToSet, publisher,
+        Book book = new Book(bookName, author, price, date, publisher,
                 reseller, pages, verticalSize, horizontalSize, weight, language, isTranslated, addressList);
 
 

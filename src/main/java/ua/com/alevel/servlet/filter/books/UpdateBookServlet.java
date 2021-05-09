@@ -60,8 +60,7 @@ public class UpdateBookServlet extends HttpServlet {
         Integer weight = Integer.valueOf(request.getParameter("weight"));
         String language = request.getParameter("language");
         Boolean isTranslated = Boolean.valueOf(request.getParameter("istranslated"));
-        LocalDate date = LocalDate.now();
-        Date dateToSet = Date.valueOf(date);
+        Date date = Date.valueOf(request.getParameter("date"));
         String addresses = request.getParameter("address");
         List<Address> addressList = new ArrayList<>();
         String[] address = addresses.split(";");
@@ -69,7 +68,7 @@ public class UpdateBookServlet extends HttpServlet {
         for (String item : address) {
             addressList.add(addressDao.getAddressByName((item)));
         }
-        Book newBook = new Book(bookName, author, price, dateToSet, publisher, reseller, pages, verticalSize,
+        Book newBook = new Book(bookName, author, price, date, publisher, reseller, pages, verticalSize,
                 horizontalSize, weight, language, isTranslated);
         newBook.setAddressList(addressList);
         newBook.setId(oldBook.getId());

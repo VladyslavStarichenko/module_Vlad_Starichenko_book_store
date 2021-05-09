@@ -144,6 +144,10 @@
             <input name="language" type="text" class="form-control"/> <BR/>
         </fieldset>
         <fieldset class="form-group">
+            <label>Date</label>
+            <input name="date" type="text" class="form-control" placeholder="YYYY/MM/DD"/> <BR/>
+        </fieldset>
+        <fieldset class="form-group">
             <label>Is Translated</label>
             <input name="istranslated" type="text" class="form-control"/> <BR/>
         </fieldset>

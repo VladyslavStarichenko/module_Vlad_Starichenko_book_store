@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*Fixed: It's able to get all addresses for each book */
 @WebServlet(urlPatterns = "/list-books.do")
 public class GetAllBooksServlet extends HttpServlet {
 

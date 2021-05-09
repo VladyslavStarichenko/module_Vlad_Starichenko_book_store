@@ -17,7 +17,6 @@ private AddressService addressService = new AddressService();
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("addresses", addressService.retrieveAddresses());
-
         request.getRequestDispatcher("/WEB-INF/views/address/list-addresses.jsp").forward(
                 request, response);
     }

@@ -54,7 +54,7 @@ public class Book {
     @Column(name = "is_translated")
     private boolean isTranslated;
 
-
+/*Fixed: Eager mode is deleted*/
     @ManyToMany(cascade=CascadeType.ALL)
     @JoinTable(
             name = "book_address",

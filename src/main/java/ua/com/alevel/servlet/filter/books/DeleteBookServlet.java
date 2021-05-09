@@ -1,10 +1,8 @@
 package ua.com.alevel.servlet.filter.books;
 
 
-import ua.com.alevel.servlet.dao.BookDao;
+
 import ua.com.alevel.servlet.filter.service.BookService;
-import ua.com.alevel.servlet.models.Address;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
