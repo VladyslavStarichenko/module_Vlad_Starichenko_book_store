@@ -4,6 +4,7 @@ package ua.com.alevel.servlet.filter.books;
 import ua.com.alevel.servlet.dao.AddressDao;
 import ua.com.alevel.servlet.dao.BookDao;
 import ua.com.alevel.servlet.filter.service.BookService;
+import ua.com.alevel.servlet.helper.DateConvertor;
 import ua.com.alevel.servlet.models.Address;
 import ua.com.alevel.servlet.models.Book;
 
@@ -13,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +25,7 @@ public class AddBookServlet extends HttpServlet {
     private BookService bookService = new BookService();
     private  BookDao bookDao = new BookDao();
     private AddressDao addressDao = new AddressDao();
+    private DateConvertor dateConvertor = new DateConvertor();
 
     protected void doGet(HttpServletRequest request,
                          HttpServletResponse response) throws ServletException, IOException {
@@ -47,7 +48,10 @@ public class AddBookServlet extends HttpServlet {
         Integer weight = Integer.valueOf(request.getParameter("weight"));
         String language = request.getParameter("language");
         Boolean isTranslated = Boolean.valueOf(request.getParameter("istranslated"));
-        Date date = Date.valueOf(request.getParameter("date"));
+        String stringDate = request.getParameter("date");
+        String[] formatted = dateConvertor.dateFormat(stringDate);
+        String resultDate = dateConvertor.dateConverting(formatted);
+        Date date = Date.valueOf(resultDate);
         String addresses = request.getParameter("address");
         List<Address> addressList = new ArrayList<>();
         getListOfAddresses(addresses, addressList);
